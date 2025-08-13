@@ -155,7 +155,7 @@ tasks: {
 #### Recommended Libraries
 ```json
 {
-  "expo": "~49.0.0",
+  "expo": "~53.0.0",
   "expo-router": "^2.0.0",
   "expo-image": "~1.3.2",
   "expo-assets": "~11.5.0",
