@@ -1,5 +1,5 @@
 import { authService } from '../../../services/authService';
-import { PrimaryButton } from '@/components/primaryButton';
+import { PrimaryButton } from '@/components';
 
 export default function TasksScreen() {
   return (
