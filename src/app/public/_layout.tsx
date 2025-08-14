@@ -4,7 +4,7 @@ export default function PublicLayout() {
   return (
     <Stack>
       <Stack.Screen name="login" options={{ title: 'Login' }} />
-      {/* <Stack.Screen name="signup" options={{ title: 'Sign Up' }} /> */}
+      <Stack.Screen name="signup" options={{ title: 'Sign Up' }} />
     </Stack>
   );
 }

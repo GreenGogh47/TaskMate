@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { View, Alert } from 'react-native';
 import { router } from 'expo-router';
-import { authService } from '../../services/authService';
-import { FormInput, PrimaryButton } from '@/components';
+import { authService } from '@/src/services/authService';
+import { FormInput, PrimaryButton } from '@/src/components';
+import { handleAuthError } from '@/src/utils';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    console.log("Login pressed", { email, password });
     try {
       await authService.signIn(email, password);
       // THE INDEX WOULD HANDLE THIS NOW
       router.replace('/tasks');
     } catch (error) {
-      Alert.alert('Error', error instanceof Error ? error.message : 'Login failed');
+      handleAuthError(error, "Login Error");
     }
   };
 
@@ -24,6 +24,10 @@ export default function LoginScreen() {
       <FormInput value={email} onChangeText={setEmail} placeholder="Email" />
       <FormInput value={password} onChangeText={setPassword} placeholder="Password" secureTextEntry />
       <PrimaryButton title="Login" onPress={handleLogin} />
+      <PrimaryButton 
+        title="Create an Account" 
+        onPress={() => router.push('/public/signup')} 
+      />
     </View>
   );
 }

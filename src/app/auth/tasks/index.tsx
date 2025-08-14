@@ -1,12 +1,12 @@
-import { authService } from '../../../services/authService';
-import { PrimaryButton } from '@/components';
+import { authService } from "@/src/services/authService";
+import { PrimaryButton } from '@/src/components';
 
 export default function TasksScreen() {
   return (
     <PrimaryButton
       title="Log Out"
       onPress={() => {
-        console.log("tasks screen, logging out now");
+        console.log("Made it to the tasks screen!!");
         authService.signOut();
       }}
     />

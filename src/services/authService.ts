@@ -5,11 +5,12 @@ import {
   onAuthStateChanged
 } from 'firebase/auth';
 import { User as FirebaseUser } from 'firebase/auth';
+export type { FirebaseUser };
 // To provide clarity between Firebase user data and the User typescript interface
 import { auth } from '../config/firebase';
 
 export const authService = {
-  signUp: (email: string, password: string) => 
+  signUp: (email: string, password: string, displayName: string) => 
     createUserWithEmailAndPassword(auth, email, password),
   
   signIn: (email: string, password: string) => 

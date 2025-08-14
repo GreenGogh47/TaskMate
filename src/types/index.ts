@@ -1,13 +1,22 @@
-import { Timestamp } from "firebase/firestore";
+import { Timestamp, FieldValue } from "firebase/firestore";
 
 // Types (Classes)
 interface AppUser {
   userId: string;
   email: string;
   displayName: string;
-  profilePicture: string;
+  profilePicture?: string;
   createdAt: Timestamp;
 }
+
+type NewAppUser = Omit<AppUser, 'createdAt'> & {
+  createdAt: FieldValue;
+};
+
+// Firebase returns a `FieldValue`
+// It's a special placeholder for "let the backend fill this in"
+// When a User is created, it's a fieldvalue
+// When a User is READ, then it's a Timestamp
 
 interface Task {
   taskId: string;
@@ -22,7 +31,7 @@ interface Task {
   updatedAt: Timestamp;
 }
 
-export { AppUser, Task }
+export { NewAppUser, AppUser, Task }
 
 // User was renamed to AppUser because `User`
 // to distinguish it from the user imported from firebase.
