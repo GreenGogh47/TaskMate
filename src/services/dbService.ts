@@ -15,7 +15,6 @@ export const dbService = {
       //todo: can this be edited in the AppUser profile yet?
       createdAt: serverTimestamp(),
     } satisfies NewAppUser);
-    console.log("OUTPUT FOR bdService:", userCred.user);
     return userCred.user;
   },
 };
