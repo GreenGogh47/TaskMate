@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { authService } from '../services/authService';
-import { User } from 'firebase/auth';
+import { User as FirebaseUser } from 'firebase/auth';
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null | undefined>(undefined); 
+  const [user, setUser] = useState<FirebaseUser | null | undefined>(undefined); 
   // undefined = still loading, null = no user, User = signed in
 
   useEffect(() => {

@@ -2,9 +2,10 @@ import {
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged,
-  User
+  onAuthStateChanged
 } from 'firebase/auth';
+import { User as FirebaseUser } from 'firebase/auth';
+// To provide clarity between Firebase user data and the User typescript interface
 import { auth } from '../config/firebase';
 
 export const authService = {
@@ -16,6 +17,6 @@ export const authService = {
   
   signOut: () => signOut(auth),
 
-  onAuthStateChanged: (callback: (user: User | null) => void) =>
+  onAuthStateChanged: (callback: (user: FirebaseUser | null) => void) =>
     onAuthStateChanged(auth, callback),
 };
