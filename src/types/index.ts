@@ -31,7 +31,12 @@ interface Task {
   updatedAt: Timestamp;
 }
 
-export { NewAppUser, AppUser, Task }
+type NewTask = Omit<Task, 'createdAt' | 'updatedAt'> & {
+  createdAt: FieldValue;
+  updatedAt: FieldValue;
+}
+
+export { NewAppUser, AppUser, NewTask, Task }
 
 // User was renamed to AppUser because `User`
 // to distinguish it from the user imported from firebase.

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Alert } from 'react-native';
 import { router } from 'expo-router';
-import { authService } from '@/src/services/authService';
+import { authService } from '@/src/services/userService';
 import { FormInput, PrimaryButton } from '@/src/components';
 import { handleAuthError } from '@/src/utils';
 
@@ -12,12 +12,13 @@ export default function LoginScreen() {
   const handleLogin = async () => {
     try {
       await authService.signIn(email, password);
-      // THE INDEX WOULD HANDLE THIS NOW
-      router.replace('/tasks');
     } catch (error) {
       handleAuthError(error, "Login Error");
     }
   };
+
+  // Don't route to a particular page,
+  // because the root _layout will handle that along with auth.
 
   return (
     <View style={{ flex: 1, padding: 20, justifyContent: 'center' }}>
