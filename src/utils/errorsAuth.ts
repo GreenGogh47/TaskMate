@@ -8,7 +8,7 @@ export const authErrors: Record<string, string> = {
   "auth/wrong-password": "Incorrect password. Please try again.",
 };
 
-export function handleAuthError(error: any, context: string = "Error") {
+export function handleAuthError(error: any, context: string = "Authentication Error") {
   const code = error.code || "unknown";
   const message = authErrors[code] || "Something went wrong. Please try again.";
   Alert.alert(context, message);
