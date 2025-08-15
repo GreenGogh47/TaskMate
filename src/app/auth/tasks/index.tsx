@@ -10,11 +10,6 @@ export default function TasksScreen() {
   const user = useAuth();
   // Using the hook should trigger a re-render with an updated user.
   // Instead of relying on memory, it's listening actively.
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [dueDate, setDueDate] = useState('');
-  const [priority, setPriority] = useState('');
-  const [category, setCategory] = useState('');
   const [tasks, setTasks] = useState<Task[]>([]);
 
   // Load tasks and provides live uptdates with onSnapshot
