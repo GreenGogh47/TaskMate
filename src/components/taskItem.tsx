@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Task } from '@/src/types';
 import { MaterialIcons } from '@expo/vector-icons';
 import { formatDueDate } from '@/src/utils';
+import { COLORS, SPACING, FONT_SIZES } from '@/src/constants';
 
 type TaskItemProps = {
   task: Task;
@@ -30,9 +31,9 @@ export default function TaskItem({ task }: TaskItemProps) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: SPACING.md,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomColor: COLORS.border,
   },
   header: {
     flexDirection: 'row',
@@ -40,20 +41,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 18,
+    fontSize: FONT_SIZES.lg,
     fontWeight: 'bold',
+    color: COLORS.text.primary,
   },
   description: {
-    color: '#555',
-    marginTop: 4,
+    color: COLORS.text.secondary,
+    marginTop: SPACING.xs,
   },
   dueDate: {
-    marginTop: 4,
+    marginTop: SPACING.xs,
     fontStyle: 'italic',
-    color: '#888',
+    color: COLORS.text.tertiary,
   },
   category: {
-    marginTop: 4,
-    color: '#333',
+    marginTop: SPACING.xs,
+    color: COLORS.text.primary,
   },
 });

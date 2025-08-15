@@ -1,27 +1,51 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZES, GRADIENTS } from '@/src/constants';
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
+  variant?: 'primary' | 'secondary';
 }
 
-export function PrimaryButton({ title, onPress }: ButtonProps) {
+export function PrimaryButton({ title, onPress, variant = 'primary' }: ButtonProps) {
+  const gradientColors = variant === 'primary' 
+    ? GRADIENTS.primary
+    : GRADIENTS.secondary;
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Text style={styles.buttonText}>{title}</Text>
+      <LinearGradient
+        colors={gradientColors}
+        style={styles.gradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+      >
+        <Text style={[styles.buttonText, variant === 'secondary' && styles.secondaryText]}>
+          {title}
+        </Text>
+      </LinearGradient>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#007AFF',
-    padding: 15,
-    borderRadius: 5,
+    borderRadius: BORDER_RADIUS.md,
+    overflow: 'hidden',
+  },
+  gradient: {
+    padding: SPACING.md,
+    alignItems: 'center',
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
+    fontSize: FONT_SIZES.md,
+    fontWeight: '600',
+  },
+  secondaryText: {
+    color: COLORS.text.primary,
   },
 });
