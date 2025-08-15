@@ -1,7 +1,27 @@
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  User as FirebaseUser
+} from 'firebase/auth';
 import { auth, db } from '../config/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { NewAppUser } from '@/src/types';
+export type { FirebaseUser };
+
+export const authService = {
+  signUp: (email: string, password: string, displayName: string) => 
+    createUserWithEmailAndPassword(auth, email, password),
+  
+  signIn: (email: string, password: string) => 
+    signInWithEmailAndPassword(auth, email, password),
+  
+  signOut: () => signOut(auth),
+
+  onAuthStateChanged: (callback: (user: FirebaseUser | null) => void) =>
+    onAuthStateChanged(auth, callback),
+}
 
 export const dbService = {
   newUserCreation: async (email: string, password: string, profile: Partial<NewAppUser>) => {
@@ -11,8 +31,6 @@ export const dbService = {
       email,
       ...profile,
       displayName: profile.displayName ?? email.split("@")[0],
-      //Default display name using the email.
-      //todo: can this be edited in the AppUser profile yet?
       createdAt: serverTimestamp(),
     } satisfies NewAppUser);
     return userCred.user;
