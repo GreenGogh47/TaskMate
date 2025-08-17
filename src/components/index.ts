@@ -4,3 +4,7 @@ export { default as TaskForm } from "./taskForm";
 export { default as TasksList } from "./tasksList";
 export { NewTaskButton } from "./newTaskButton";
 export { LoadingSpinner } from "./loadingSpinner";
+export { DueDatePicker } from "./dueDateSelector";
+export { Priority, PrioritySelector } from "./prioritySelector";
+export { Category, CategorySelector } from "./categorySelector";
+export { ScreenWrapper } from "./common/screenWrapper";

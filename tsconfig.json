@@ -2,20 +2,23 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
+    // aka - give me the safest TypeScript experience possible
     "paths": {
       "@firebase/auth": [
         "./node_modules/@firebase/auth/dist/index.rn.d.ts"
       ],
+      // Typescript/Expo issue fix
       "@/*": [
         "./*"
       ]
+      // allows modified relative paths like @/components
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx"
   ]
+  // Check ALL ts and tsx files in this project.
 }
 
 // https://stackoverflow.com/questions/76914913/cannot-import-getreactnativepersistence-in-firebase10-1-0
-// Typescript issue fix

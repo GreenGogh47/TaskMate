@@ -23,6 +23,13 @@ export const GRADIENTS = {
   danger: [COLORS.danger, '#FF2D55'] as [string, string],
 } as const;
 
+export const GRADIENT_DIRECTIONS = {
+  horizontal: { start: { x: 0, y: 0 }, end: { x: 1, y: 0 } },
+  vertical: { start: { x: 0, y: 0 }, end: { x: 0, y: 1 } },
+  diagonal: { start: { x: 0, y: 0 }, end: { x: 1, y: 1 } },
+  subtle: { start: { x: 0, y: 0 }, end: { x: 0.3, y: 0 } }, // Less dramatic for small buttons
+} as const;
+
 export const SPACING = {
   xs: 4,
   sm: 8,

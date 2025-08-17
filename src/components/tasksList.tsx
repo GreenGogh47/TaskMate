@@ -13,6 +13,11 @@ export default function TasksList({ tasks }: TasksListProps) {
       data={tasks}
       keyExtractor={(item) => item.taskId}
       renderItem={({ item }) => <TaskItem task={item} />}
+      keyboardShouldPersistTaps="handled"
+      keyboardDismissMode="on-drag"
+      showsVerticalScrollIndicator={false}
+      style={{ flex: 1 }}
+      contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }} // Add bottom padding for floating button
     />
   );
 }

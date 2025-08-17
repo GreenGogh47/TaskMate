@@ -1,6 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
-import { TaskForm } from '@/src/components';
+import { TaskForm, ScreenWrapper } from '@/src/components';
 import { useAuth } from '@/src/hooks/useAuth';
 
 export default function NewTaskScreen() {
@@ -9,8 +8,8 @@ export default function NewTaskScreen() {
   if (!user) return null;
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
+    <ScreenWrapper>
       <TaskForm />
-    </View>
+    </ScreenWrapper>
   );
 }

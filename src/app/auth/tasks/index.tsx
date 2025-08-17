@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
 import { taskService } from '@/src/services/taskService';
-import { PrimaryButton, TasksList, NewTaskButton, LoadingSpinner } from '@/src/components';
+import { PrimaryButton, TasksList, NewTaskButton, LoadingSpinner, ScreenWrapper } from '@/src/components';
 import { ErrorBoundary } from '@/src/utils';
 import { useAuth } from '@/src/hooks/useAuth';
 import { Task } from '@/src/types';
 import { authService } from '@/src/services/userService';
 import { useRouter } from 'expo-router';
-import { SPACING } from '@/src/constants';
 
 export default function TasksScreen() {
   const user = useAuth();
@@ -40,9 +38,9 @@ export default function TasksScreen() {
   // Show message if not authenticated (shouldn't happen due to route protection)
   if (!user) {
     return (
-      <View style={styles.container}>
+      <ScreenWrapper>
         <PrimaryButton title="Please log in to view tasks" onPress={() => router.push('/public/login')} />
-      </View>
+      </ScreenWrapper>
     );
   }
 
@@ -52,30 +50,23 @@ export default function TasksScreen() {
 
   if (error) {
     return (
-      <View style={styles.container}>
+      <ScreenWrapper>
         <PrimaryButton 
           title="Error loading tasks. Tap to retry." 
           onPress={() => setError(null)} 
           variant="secondary"
         />
-      </View>
+      </ScreenWrapper>
     );
   }
 
   return (
     <ErrorBoundary>
-      <View style={styles.container}>
+      <ScreenWrapper hasVirtualizedList>
         <PrimaryButton title="Log Out" onPress={() => authService.signOut()} />
         <TasksList tasks={tasks} />
         <NewTaskButton onPress={() => router.push('/auth/tasks/new')} />
-      </View>
+      </ScreenWrapper>
     </ErrorBoundary>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: SPACING.xl,
-  },
-});

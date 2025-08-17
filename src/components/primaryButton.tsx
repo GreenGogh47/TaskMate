@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZES, GRADIENTS } from '@/src/constants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZES, GRADIENTS, GRADIENT_DIRECTIONS } from '@/src/constants';
 
 interface ButtonProps {
   title: string;
@@ -19,8 +19,8 @@ export function PrimaryButton({ title, onPress, variant = 'primary' }: ButtonPro
       <LinearGradient
         colors={gradientColors}
         style={styles.gradient}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
+        start={GRADIENT_DIRECTIONS.subtle.start}
+        end={GRADIENT_DIRECTIONS.subtle.end}
       >
         <Text style={[styles.buttonText, variant === 'secondary' && styles.secondaryText]}>
           {title}

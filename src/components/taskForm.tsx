@@ -1,16 +1,23 @@
-// src/components/TaskForm.tsx
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, TextInput } from 'react-native';
 import { taskService } from '@/src/services/taskService';
 import { handleAuthError } from '@/src/utils';
+import { Timestamp } from 'firebase/firestore';
 import { FormInput } from './formInput';
 import { PrimaryButton } from './primaryButton';
+import { DueDatePicker } from "./dueDateSelector";
+import { Priority, PrioritySelector } from "./prioritySelector";
+import { Category, CategorySelector } from "./categorySelector";
 
 export default function TaskForm({ onTaskCreated }: { onTaskCreated?: () => void }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
+  const [priority, setPriority] = useState<Priority | undefined>(undefined);
+  const [dueDate, setDueDate] = useState<Date | undefined>(undefined);
+  const [category, setCategory] = useState<Category | undefined>(undefined);
   const [loading, setLoading] = useState(false);
+
+  const descriptionRef = useRef<TextInput>(null);
 
   const createTask = async () => {
     try {
@@ -20,13 +27,18 @@ export default function TaskForm({ onTaskCreated }: { onTaskCreated?: () => void
       const taskId = await taskService.createTask({
         title,
         description,
+        priority,
+        dueDate: dueDate ? Timestamp.fromDate(dueDate) : undefined,
         category
       });
 
       console.log('Task created with ID:', taskId);
 
+      // Reset form
       setTitle('');
       setDescription('');
+      setPriority(undefined);
+      setDueDate(undefined);
       setCategory('');
 
       onTaskCreated?.();
@@ -40,11 +52,35 @@ export default function TaskForm({ onTaskCreated }: { onTaskCreated?: () => void
 
   return (
     <View style={{ gap: 10 }}>
-      <FormInput value={title} onChangeText={setTitle} placeholder="Task Name" />
-      <FormInput value={description} onChangeText={setDescription} placeholder="Description" />
-      <FormInput value={category} onChangeText={setCategory} placeholder="Category" />
+      <FormInput 
+        value={title} 
+        onChangeText={setTitle} 
+        placeholder="Task Name" 
+        autoFocus={true}
+        returnKeyType="next"
+        onSubmitEditing={() => descriptionRef.current?.focus()}
+        blurOnSubmit={false}
+      />
+      <FormInput 
+        ref={descriptionRef}
+        value={description} 
+        onChangeText={setDescription} 
+        placeholder="Description" 
+        returnKeyType="done"
+        onSubmitEditing={createTask}
+        blurOnSubmit={true}
+        multiline
+        numberOfLines={3}
+      />
+      
+      <PrioritySelector value={priority} onChange={setPriority} />
+      <DueDatePicker value={dueDate} onChange={setDueDate} />
+      <CategorySelector value={category} onChange={setCategory}/>
 
-      <PrimaryButton title="Create Task" onPress={createTask} />
+      <PrimaryButton 
+        title={loading ? "Creating..." : "Create Task"} 
+        onPress={createTask}
+      />
     </View>
   );
 }
