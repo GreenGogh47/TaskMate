@@ -4,11 +4,9 @@ import { taskService } from '@/services/taskService';
 import { handleAuthError } from '@/utils';
 import { Timestamp } from 'firebase/firestore';
 import { FormInput } from '@/components/common/formInput';
-import { PrimaryButton } from '@/components/common/primaryButton';
-import { DueDatePicker } from "@/components/tasks/fields/dueDateSelector";
-import { PrioritySelector } from "@/components/tasks/fields/prioritySelector";
-import { Category, CategorySelector } from "@/components/tasks/fields/categorySelector";
-import { Priority } from '@/types';
+import { PrimaryButton } from '@/components/common';
+import { DueDatePicker, PrioritySelector, CategorySelector } from "@/components/tasks";
+import { Priority, Category } from '@/types';
 
 export default function TaskForm({ onTaskCreated }: { onTaskCreated?: () => void }) {
   const [title, setTitle] = useState('');

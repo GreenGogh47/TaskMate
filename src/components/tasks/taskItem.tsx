@@ -4,7 +4,7 @@ import { Task } from '@/types';
 import { MaterialIcons } from '@expo/vector-icons';
 import { formatDueDate } from '@/utils';
 import { COLORS, SPACING, FONT_SIZES } from '@/constants';
-import { getPriorityOption } from '@/types';
+import { getPriorityOption, getCategoryOption } from '@/types';
 
 type TaskItemProps = {
   task: Task;
@@ -15,20 +15,33 @@ export default function TaskItem({ task }: TaskItemProps) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>{task.title}</Text>
-        {task.priority !== undefined && (() => {
-          const option = getPriorityOption(task.priority);
+      </View>
+      {task.description && <Text style={styles.description}>{task.description}</Text>}
+      <View style={styles.header}>
+      {task.dueDate && <Text style={styles.dueDate}>Due: {formatDueDate(task.dueDate)}</Text>}
+        {(() => {
+          const pri = getPriorityOption(task.priority);
+          if (!pri) return null;
           return (
             <MaterialIcons
-              name={option.icon as any}
+              name={pri.icon as any}
               size={20}
-              color={option.color}
+              color={pri.color}
+            />
+          );
+        })()}
+        {task.category && (() => {
+          const cat = getCategoryOption(task.category);
+          if (!cat) return null;
+          return (
+            <MaterialIcons
+              name={cat.icon as any}
+              size={20}
+              color={cat.color}
             />
           );
         })()}
       </View>
-      {task.description && <Text style={styles.description}>{task.description}</Text>}
-      {task.dueDate && <Text style={styles.dueDate}>Due: {formatDueDate(task.dueDate)}</Text>}
-      {task.category && <Text style={styles.category}>{task.category}</Text>}
     </View>
   );
 }

@@ -18,8 +18,13 @@ export const taskService = {
     const taskRef = doc(collection(db, 'tasks'));
     const taskId = taskRef.id;
 
+    // Filter out undefined values to avoid Firebase errors
+    const cleanProfile = Object.fromEntries(
+      Object.entries(profile).filter(([_, value]) => value !== undefined)
+    );
+
     const task: NewTask = {
-      ...profile,
+      ...cleanProfile,
       taskId,
       userId: auth.currentUser.uid,
       createdAt: serverTimestamp(),

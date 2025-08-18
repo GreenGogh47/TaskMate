@@ -17,6 +17,6 @@ export const PRIORITY_OPTIONS: PriorityOption[] = [
 ];
 
 // Helper to quickly look up a priority option
-export function getPriorityOption(value?: Priority): PriorityOption {
-  return PRIORITY_OPTIONS.find((opt) => opt.value === value)!;
+export function getPriorityOption(value?: Priority): PriorityOption | undefined {
+  return PRIORITY_OPTIONS.find((opt) => opt.value === value);
 }
