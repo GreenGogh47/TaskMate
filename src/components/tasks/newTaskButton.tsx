@@ -1,6 +1,6 @@
-import { CircleButton } from '@/src/components/common/circleButton'
+import { CircleButton } from '@/components/common/circleButton'
 import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS } from '@/src/constants';
+import { COLORS } from '@/constants';
 
 export function NewTaskButton({ onPress }: { onPress: () => void }) {
   return (
@@ -9,3 +9,4 @@ export function NewTaskButton({ onPress }: { onPress: () => void }) {
     </CircleButton>
   );
 }
+

@@ -1,22 +1,14 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS, SPACING } from '@/src/constants';
-import { CircleButton } from '@/src/components/common/circleButton';
-
-export type Priority = 'high' | 'medium' | 'low';
+import { COLORS, SPACING } from '@/constants';
+import { CircleButton } from '@/components/common/circleButton';
+import { PRIORITY_OPTIONS, Priority } from '@/types';
 
 interface PrioritySelectorProps {
   value?: Priority; // optional because undefined means "no priority"
   onChange: (priority: Priority | undefined) => void;
 }
-
-const PRIORITY_OPTIONS: { value?: Priority; color: string; icon: string }[] = [
-  { value: undefined, color: COLORS.text.tertiary, icon: 'flag' }, // no priority
-  { value: 'low', color: COLORS.success, icon: 'flag' },
-  { value: 'medium', color: COLORS.warning, icon: 'flag' },
-  { value: 'high', color: COLORS.danger, icon: 'flag' },
-];
 
 export function PrioritySelector({ value, onChange }: PrioritySelectorProps) {
   return (
@@ -58,3 +50,5 @@ const styles = StyleSheet.create({
     borderColor: COLORS.border,
   },
 });
+
+

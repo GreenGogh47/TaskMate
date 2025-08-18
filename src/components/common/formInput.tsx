@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { View, TextInput, TouchableOpacity, StyleSheet, Text, TextInputProps } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { COLORS, SPACING, FONT_SIZES } from "@/src/constants";
+import { COLORS, SPACING, FONT_SIZES } from "@/constants";
 
 interface FormInputProps extends TextInputProps {
   icon?: keyof typeof MaterialIcons.glyphMap; // optional icon (e.g., "email", "label")

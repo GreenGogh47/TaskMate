@@ -1,6 +1,7 @@
 import React from 'react';
-import { TaskForm, ScreenWrapper } from '@/src/components';
-import { useAuth } from '@/src/hooks/useAuth';
+import { TaskForm } from '@/components';
+import { ScreenWrapper } from '@/components/common';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function NewTaskScreen() {
   const user = useAuth();

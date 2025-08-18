@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,12 +6,11 @@ import {
   TouchableOpacity,
   StyleSheet,
   Keyboard,
-  Platform,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { COLORS, SPACING, FONT_SIZES } from "@/src/constants";
-import { CircleButton } from "@/src/components/common/circleButton";
-import { FormInput } from "@/src/components/formInput";
+import { COLORS, SPACING, FONT_SIZES } from "@/constants";
+import { CircleButton } from "@/components/common/circleButton";
+import { FormInput } from "@/components/common/formInput";
 
 export type Category = string;
 
@@ -71,7 +70,6 @@ export function CategorySelector({
 
   return (
     <View style={styles.container}>
-      {/* Icon row */}
       <View style={styles.iconRow}>
         {CATEGORY_OPTIONS.map((option) => {
           const isSelected = value === option.label;
@@ -93,7 +91,6 @@ export function CategorySelector({
         })}
       </View>
 
-      {/* Text box */}
       {isEditing ? (
         <FormInput
           icon="label"
@@ -116,7 +113,7 @@ export function CategorySelector({
             </>
           }
         />
-        ) : (
+      ) : (
         <TouchableOpacity style={styles.button} onPress={() => setIsEditing(true)}>
           <MaterialIcons name="label" size={20} color={COLORS.text.secondary} />
           <Text style={[styles.text, !value && styles.placeholder]}>
@@ -169,23 +166,6 @@ const styles = StyleSheet.create({
   clearButton: {
     padding: SPACING.xs,
   },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: SPACING.md,
-    borderWidth: 1,
-    borderColor: COLORS.primary,
-    borderRadius: 8,
-    backgroundColor: COLORS.background,
-  },
-  input: {
-    flex: 1,
-    marginLeft: SPACING.sm,
-    fontSize: FONT_SIZES.md,
-    color: COLORS.text.primary,
-  },
-  actionButton: {
-    padding: SPACING.xs,
-    marginLeft: SPACING.xs,
-  },
 });
+
+

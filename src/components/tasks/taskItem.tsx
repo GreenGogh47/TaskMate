@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Task } from '@/src/types';
+import { Task } from '@/types';
 import { MaterialIcons } from '@expo/vector-icons';
-import { formatDueDate } from '@/src/utils';
-import { COLORS, SPACING, FONT_SIZES } from '@/src/constants';
+import { formatDueDate } from '@/utils';
+import { COLORS, SPACING, FONT_SIZES } from '@/constants';
+import { getPriorityOption } from '@/types';
 
 type TaskItemProps = {
   task: Task;
@@ -14,13 +15,16 @@ export default function TaskItem({ task }: TaskItemProps) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>{task.title}</Text>
-        {task.priority && (
-          <MaterialIcons
-            name={task.priority === 'high' ? 'priority-high' : 'low-priority'}
-            size={20}
-            color={task.priority === 'high' ? 'red' : 'gray'}
-          />
-        )}
+        {task.priority !== undefined && (() => {
+          const option = getPriorityOption(task.priority);
+          return (
+            <MaterialIcons
+              name={option.icon as any}
+              size={20}
+              color={option.color}
+            />
+          );
+        })()}
       </View>
       {task.description && <Text style={styles.description}>{task.description}</Text>}
       {task.dueDate && <Text style={styles.dueDate}>Due: {formatDueDate(task.dueDate)}</Text>}

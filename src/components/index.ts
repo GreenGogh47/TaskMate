@@ -1,10 +1,5 @@
-export { PrimaryButton } from "./primaryButton";
-export { FormInput } from "./formInput";
-export { default as TaskForm } from "./taskForm";
-export { default as TasksList } from "./tasksList";
-export { NewTaskButton } from "./newTaskButton";
-export { LoadingSpinner } from "./loadingSpinner";
-export { DueDatePicker } from "./dueDateSelector";
-export { Priority, PrioritySelector } from "./prioritySelector";
-export { Category, CategorySelector } from "./categorySelector";
+export { PrimaryButton } from "./common/primaryButton";
+export { FormInput } from "./common/formInput";
+export * from "./tasks";
+export { LoadingSpinner } from "./common/loadingSpinner";
 export { ScreenWrapper } from "./common/screenWrapper";

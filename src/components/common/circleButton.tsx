@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, ViewStyle } from 'react-native';
-import { BORDER_RADIUS, SHADOWS } from '@/src/constants';
+import { BORDER_RADIUS, SHADOWS } from '@/constants';
 
 interface Props {
   size?: number;

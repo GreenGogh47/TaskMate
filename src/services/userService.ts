@@ -5,9 +5,9 @@ import {
   onAuthStateChanged,
   User as FirebaseUser
 } from 'firebase/auth';
-import { auth, db } from '../config/firebase';
+import { auth, db } from '@/config/firebase';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { NewAppUser } from '@/src/types';
+import { NewAppUser } from '@/types';
 export type { FirebaseUser };
 
 export const authService = {

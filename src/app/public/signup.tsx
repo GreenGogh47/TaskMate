@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { dbService } from '@/src/services/userService';
-import { FormInput, PrimaryButton } from '@/src/components';
-import { handleAuthError } from '@/src/utils';
+import { dbService } from '@/services/userService';
+import { FormInput, PrimaryButton } from '@/components/common';
+import { handleAuthError } from '@/utils';
 
 
 export default function SignupScreen() {

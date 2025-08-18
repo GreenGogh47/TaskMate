@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { COLORS, SPACING, FONT_SIZES } from '@/src/constants';
+import { COLORS, SPACING, FONT_SIZES } from '@/constants';
 
 interface DueDatePickerProps {
   value?: Date;
@@ -89,3 +89,5 @@ const styles = StyleSheet.create({
     padding: SPACING.xs,
   },
 });
+
+

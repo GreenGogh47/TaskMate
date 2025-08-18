@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { Task } from '@/src/types';
-import TaskItem from './taskItem';
+import { Task } from '@/types';
+import TaskItem from '@/components/tasks/taskItem';
 
 type TasksListProps = {
   tasks: Task[];

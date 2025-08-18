@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZES, GRADIENTS, GRADIENT_DIRECTIONS } from '@/src/constants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZES, GRADIENTS, GRADIENT_DIRECTIONS } from '@/constants';
 
 interface ButtonProps {
   title: string;

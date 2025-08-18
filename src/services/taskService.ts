@@ -1,4 +1,4 @@
-import { auth, db } from '../config/firebase';
+import { auth, db } from '@/config/firebase';
 import {
   collection,
   doc,
@@ -9,7 +9,7 @@ import {
   orderBy,
   onSnapshot
 } from 'firebase/firestore';
-import { NewTask, Task } from '@/src/types';
+import { NewTask, Task } from '@/types';
 
 export const taskService = {
   createTask: async (profile: Partial<NewTask>) => {

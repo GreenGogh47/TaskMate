@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { taskService } from '@/src/services/taskService';
-import { PrimaryButton, TasksList, NewTaskButton, LoadingSpinner, ScreenWrapper } from '@/src/components';
-import { ErrorBoundary } from '@/src/utils';
-import { useAuth } from '@/src/hooks/useAuth';
-import { Task } from '@/src/types';
-import { authService } from '@/src/services/userService';
+import { taskService } from '@/services/taskService';
+import { PrimaryButton, TasksList, NewTaskButton } from '@/components';
+import { LoadingSpinner, ScreenWrapper } from '@/components/common';
+import { ErrorBoundary } from '@/utils';
+import { useAuth } from '@/hooks/useAuth';
+import { Task } from '@/types';
+import { authService } from '@/services/userService';
 import { useRouter } from 'expo-router';
 
 export default function TasksScreen() {

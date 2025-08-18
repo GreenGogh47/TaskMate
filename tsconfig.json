@@ -7,11 +7,11 @@
       "@firebase/auth": [
         "./node_modules/@firebase/auth/dist/index.rn.d.ts"
       ],
-      // Typescript/Expo issue fix
+      // Map the alias '@' to the 'src' directory
       "@/*": [
-        "./*"
+        "./src/*"
       ]
-      // allows modified relative paths like @/components
+      // allows imports like @/components
     }
   },
   "include": [

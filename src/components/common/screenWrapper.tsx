@@ -8,7 +8,7 @@ import {
   ScrollViewProps,
   View
 } from 'react-native';
-import { SPACING } from '@/src/constants';
+import { SPACING } from '@/constants';
 
 interface ScreenWrapperProps {
   children: ReactNode;

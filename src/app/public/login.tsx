@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Alert } from 'react-native';
 import { router } from 'expo-router';
-import { authService } from '@/src/services/userService';
-import { FormInput, PrimaryButton } from '@/src/components';
-import { handleAuthError } from '@/src/utils';
+import { authService } from '@/services/userService';
+import { FormInput, PrimaryButton } from '@/components/common';
+import { handleAuthError } from '@/utils';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');

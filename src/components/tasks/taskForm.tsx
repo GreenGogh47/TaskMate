@@ -1,13 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { View, TextInput } from 'react-native';
-import { taskService } from '@/src/services/taskService';
-import { handleAuthError } from '@/src/utils';
+import { taskService } from '@/services/taskService';
+import { handleAuthError } from '@/utils';
 import { Timestamp } from 'firebase/firestore';
-import { FormInput } from './formInput';
-import { PrimaryButton } from './primaryButton';
-import { DueDatePicker } from "./dueDateSelector";
-import { Priority, PrioritySelector } from "./prioritySelector";
-import { Category, CategorySelector } from "./categorySelector";
+import { FormInput } from '@/components/common/formInput';
+import { PrimaryButton } from '@/components/common/primaryButton';
+import { DueDatePicker } from "@/components/tasks/fields/dueDateSelector";
+import { PrioritySelector } from "@/components/tasks/fields/prioritySelector";
+import { Category, CategorySelector } from "@/components/tasks/fields/categorySelector";
+import { Priority } from '@/types';
 
 export default function TaskForm({ onTaskCreated }: { onTaskCreated?: () => void }) {
   const [title, setTitle] = useState('');

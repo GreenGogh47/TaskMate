@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { COLORS, SPACING, FONT_SIZES } from '@/src/constants';
+import { COLORS, SPACING, FONT_SIZES } from '@/constants';
 import { getErrorMessage } from './errorsGeneral';
 
 interface Props {
