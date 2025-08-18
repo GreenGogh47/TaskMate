@@ -98,40 +98,40 @@ tasks: {
 ### Development Milestones
 
 #### Phase 1: Project Setup & Authentication
-- Initialize Expo project with expo-router
-- Set up Firebase configuration
-- Implement user registration/login screens
-- Create basic app navigation structure
+- [x] Initialize Expo project with expo- [ ]router
+- [x] Set up Firebase configuration
+- [x] Implement user registration/login screens
+- [x] Create basic app navigation structure
 
 #### Phase 2: Core Functionality
-- Build task creation and listing screens
-- Implement CRUD operations for tasks
-- Set up Firestore database integration
-- Create task detail view
+- [x] Build task creation and listing screens
+- [ ] Implement CRUD operations for tasks
+- [x] Set up Firestore database integration
+- [ ] Create task detail view
 
 #### Phase 3: Enhanced Features
-- Add due dates and priority system
-- Implement filtering and sorting
-- Create category management
-- Add search functionality
+- [x] Add due dates and priority system
+- [ ] Implement filtering and sorting
+- [ ] Create category management
+- [ ] Add search functionality
 
 #### Phase 4: User Experience
-- Implement offline storage with AsyncStorage
-- Add loading states and error handling
-- Create settings screen
-- Implement data synchronization
+- [ ] Implement offline storage with AsyncStorage
+- [x] Add loading states and error handling
+- [ ] Create settings screen
+- [ ] Implement data synchronization
 
 #### Phase 5: Advanced Features
-- Set up push notifications using Expo Notifications
-- Implement dark mode theming
-- Add task statistics dashboard
-- Performance optimization
+- [ ] Set up push notifications using Expo Notifications
+- [ ] Implement dark mode theming
+- [ ] Add task statistics dashboard
+- [ ] Performance optimization
 
 #### Phase 6: Testing & Deployment
-- Write unit tests for core components
-- Conduct user acceptance testing
-- Deploy to Expo Go for testing
-- Prepare for app store submission (optional)
+- [ ] Write unit tests for core components
+- [ ] Conduct user acceptance testing
+- [ ] Deploy to Expo Go for testing
+- [ ] Prepare for app store submission (optional)
 
 ### Deliverables
 

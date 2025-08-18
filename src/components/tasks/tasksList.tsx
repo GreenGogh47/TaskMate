@@ -17,7 +17,7 @@ export default function TasksList({ tasks }: TasksListProps) {
       keyboardDismissMode="on-drag"
       showsVerticalScrollIndicator={false}
       style={{ flex: 1 }}
-      contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }} // Add bottom padding for floating button
+      contentContainerStyle={{ flexGrow: 1, paddingBottom: 50 }} // Add bottom padding for floating button
     />
   );
 }

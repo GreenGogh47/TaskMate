@@ -7,7 +7,8 @@ import {
   query,
   where,
   orderBy,
-  onSnapshot
+  onSnapshot,
+  deleteDoc
 } from 'firebase/firestore';
 import { NewTask, Task } from '@/types';
 
@@ -35,9 +36,12 @@ export const taskService = {
     return taskId;
   },
 
-  // Instead of using `getDocs`, onSnapshot is a realtime subscription method.
-  // Now when any task changes, Firestore will push the new list automatically.
-  // This will be useful on the stretch tech when I add collaborators to tasks.
+  deleteTask: async (taskId: string) => {
+    if (!auth.currentUser) throw new Error("Not authenticated");
+
+    const taskRef = doc(db, 'tasks', taskId);
+    await deleteDoc(taskRef);
+  },
 
   subscribeToUserTasks: (userId: string, callback: (tasks: Task[]) => void) => {
     const q = query(

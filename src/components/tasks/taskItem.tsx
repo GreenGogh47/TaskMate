@@ -15,10 +15,6 @@ export default function TaskItem({ task }: TaskItemProps) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>{task.title}</Text>
-      </View>
-      {task.description && <Text style={styles.description}>{task.description}</Text>}
-      <View style={styles.header}>
-      {task.dueDate && <Text style={styles.dueDate}>Due: {formatDueDate(task.dueDate)}</Text>}
         {(() => {
           const pri = getPriorityOption(task.priority);
           if (!pri) return null;
@@ -30,7 +26,12 @@ export default function TaskItem({ task }: TaskItemProps) {
             />
           );
         })()}
-        {task.category && (() => {
+      </View>
+      {task.description && <Text style={styles.description}>{task.description}</Text>}
+      
+      <View style={styles.header}>
+      {task.dueDate && <Text style={styles.dueDate}>Due: {formatDueDate(task.dueDate)}</Text>}
+      {task.category && (() => {
           const cat = getCategoryOption(task.category);
           if (!cat) return null;
           return (
