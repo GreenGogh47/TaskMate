@@ -5,7 +5,7 @@ import { handleAuthError } from '@/utils';
 import { Timestamp } from 'firebase/firestore';
 import { FormInput } from '@/components/common/formInput';
 import { PrimaryButton } from '@/components/common';
-import { DueDatePicker, PrioritySelector, CategorySelector } from "@/components/tasks";
+import { DueDatePicker, PrioritySelector, CategorySelector } from "@/components/tasks/fields";
 import { Priority, Category } from '@/types';
 
 export default function TaskForm({ onTaskCreated }: { onTaskCreated?: () => void }) {
