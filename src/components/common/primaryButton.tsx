@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: BORDER_RADIUS.md,
     overflow: 'hidden',
+    margin: BORDER_RADIUS.lg
   },
   gradient: {
     padding: SPACING.md,
