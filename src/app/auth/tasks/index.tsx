@@ -7,13 +7,22 @@ import { useAuth } from '@/hooks/useAuth';
 import { Task } from '@/types';
 import { authService } from '@/services/userService';
 import { useRouter } from 'expo-router';
+import { CategorySelector } from '@/components';
 
 export default function TasksScreen() {
   const user = useAuth();
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [filterCategory, setFilterCategory] = useState<string | undefined>(undefined);
+
+  const displayedTasks = tasks
+    .filter((task) => {
+    if (!filterCategory) return true;
+    return task.category === filterCategory;
+  })
 
   // Load tasks and provides live updates with onSnapshot
   useEffect(() => {
@@ -64,8 +73,9 @@ export default function TasksScreen() {
   return (
     <ErrorBoundary>
       <ScreenWrapper hasVirtualizedList>
+        <CategorySelector value={filterCategory} onChange={setFilterCategory} />
+        <TasksList tasks={displayedTasks} />
         <PrimaryButton title="Log Out" onPress={() => authService.signOut()} />
-        <TasksList tasks={tasks} />
         <NewTaskButton onPress={() => router.push('/auth/tasks/new')} />
       </ScreenWrapper>
     </ErrorBoundary>

@@ -107,7 +107,7 @@ tasks: {
 - [x] Build task creation and listing screens
 - [x] Implement CRUD operations for tasks
 - [x] Set up Firestore database integration
-- [ ] Create task detail view
+- [x] Create task detail view
 
 #### Phase 3: Enhanced Features
 - [x] Add due dates and priority system
