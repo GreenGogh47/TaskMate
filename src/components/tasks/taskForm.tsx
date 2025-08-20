@@ -7,45 +7,59 @@ import { FormInput } from '@/components/common/formInput';
 import { PrimaryButton } from '@/components/common';
 import { DueDatePicker, PrioritySelector, CategorySelector } from "@/components/tasks/fields";
 import { Priority, Category } from '@/types';
+import { Task } from '@/types';
 
-export default function TaskForm({ onTaskCreated }: { onTaskCreated?: () => void }) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [priority, setPriority] = useState<Priority | undefined>(undefined);
-  const [dueDate, setDueDate] = useState<Date | undefined>(undefined);
-  const [category, setCategory] = useState<Category | undefined>(undefined);
+export default function TaskForm({
+  task,
+  onTaskSaved,
+}: {
+  task?: Task;
+  onTaskSaved?: () => void;
+}) {
+  const [title, setTitle] = useState(task?.title ?? '');
+  const [description, setDescription] = useState(task?.description ?? '');
+  const [priority, setPriority] = useState<Priority | undefined>(task?.priority);
+  const [dueDate, setDueDate] = useState<Date | undefined>(
+    task?.dueDate ? task.dueDate.toDate?.() ?? task.dueDate : undefined
+  );
+  const [category, setCategory] = useState<Category | undefined>(task?.category);
   const [loading, setLoading] = useState(false);
 
   const descriptionRef = useRef<TextInput>(null);
 
-  const createTask = async () => {
+  const handleSubmit = async () => {
     try {
-      if (!title.trim()) return; // Translation: if title.strip.empty?
-      setLoading(true); // Disables the task creation button until resolved.
-
-      const taskId = await taskService.createTask({
-        title,
-        description,
-        priority,
-        dueDate: dueDate ? Timestamp.fromDate(dueDate) : undefined,
-        category
-      });
-
-      console.log('Task created with ID:', taskId);
-
-      // Reset form
-      setTitle('');
-      setDescription('');
-      setPriority(undefined);
-      setDueDate(undefined);
-      setCategory('');
-
-      onTaskCreated?.();
-    } catch (error) {
-      console.error('Task creation error:', error);
-      handleAuthError(error, 'Task Creation Error');
+      if (!title.trim()) return;
+      setLoading(true);
+  
+      if (task) {
+        // Update existing
+        await taskService.updateTask(task.taskId, {
+          title,
+          description,
+          priority,
+          dueDate: dueDate ? Timestamp.fromDate(dueDate) : undefined,
+          category,
+        });
+        console.log("Task updated:", task.taskId);
+      } else {
+        // Create new
+        const taskId = await taskService.createTask({
+          title,
+          description,
+          priority,
+          dueDate: dueDate ? Timestamp.fromDate(dueDate) : undefined,
+          category,
+        });
+        console.log("Task created with ID:", taskId);
+      }
+  
+      onTaskSaved?.();
+    } catch (err) {
+      console.error("Task save error:", err);
+      handleAuthError(err, "Task Save Error");
     } finally {
-      setLoading(false); // Enabling the task creation button again.
+      setLoading(false);
     }
   };
 
@@ -66,7 +80,7 @@ export default function TaskForm({ onTaskCreated }: { onTaskCreated?: () => void
         onChangeText={setDescription} 
         placeholder="Description" 
         returnKeyType="done"
-        onSubmitEditing={createTask}
+        onSubmitEditing={handleSubmit}
         blurOnSubmit={true}
         multiline
         numberOfLines={3}
@@ -77,8 +91,8 @@ export default function TaskForm({ onTaskCreated }: { onTaskCreated?: () => void
       <CategorySelector value={category} onChange={setCategory}/>
 
       <PrimaryButton 
-        title={loading ? "Creating..." : "Create Task"} 
-        onPress={createTask}
+        title={loading ? "Saving..." : task ? "Update Task" : "Create Task"} 
+        onPress={handleSubmit}
       />
     </View>
   );

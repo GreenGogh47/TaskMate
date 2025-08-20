@@ -1,49 +1,56 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Task } from '@/types';
 import { MaterialIcons } from '@expo/vector-icons';
 import { formatDueDate } from '@/utils';
 import { COLORS, SPACING, FONT_SIZES } from '@/constants';
 import { getPriorityOption, getCategoryOption } from '@/types';
+import { useRouter } from 'expo-router';
 
 type TaskItemProps = {
   task: Task;
 };
 
 export default function TaskItem({ task }: TaskItemProps) {
+  const router = useRouter();
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{task.title}</Text>
-        {(() => {
-          const pri = getPriorityOption(task.priority);
-          if (!pri) return null;
-          return (
-            <MaterialIcons
-              name={pri.icon as any}
-              size={20}
-              color={pri.color}
-            />
-          );
-        })()}
+    <TouchableOpacity
+      onPress={() => router.push(`/auth/tasks/${task.taskId}`)}
+    >
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>{task.title}</Text>
+          {(() => {
+            const pri = getPriorityOption(task.priority);
+            if (!pri) return null;
+            return (
+              <MaterialIcons
+                name={pri.icon as any}
+                size={20}
+                color={pri.color}
+              />
+            );
+          })()}
+        </View>
+        {task.description && <Text style={styles.description}>{task.description}</Text>}
+        
+        <View style={styles.header}>
+        {task.dueDate && <Text style={styles.dueDate}>Due: {formatDueDate(task.dueDate)}</Text>}
+        {task.category && (() => {
+            const cat = getCategoryOption(task.category);
+            if (!cat) return null;
+            return (
+              <MaterialIcons
+                name={cat.icon as any}
+                size={20}
+                color={cat.color}
+              />
+            );
+          })()}
+        </View>
       </View>
-      {task.description && <Text style={styles.description}>{task.description}</Text>}
-      
-      <View style={styles.header}>
-      {task.dueDate && <Text style={styles.dueDate}>Due: {formatDueDate(task.dueDate)}</Text>}
-      {task.category && (() => {
-          const cat = getCategoryOption(task.category);
-          if (!cat) return null;
-          return (
-            <MaterialIcons
-              name={cat.icon as any}
-              size={20}
-              color={cat.color}
-            />
-          );
-        })()}
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

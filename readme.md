@@ -105,7 +105,7 @@ tasks: {
 
 #### Phase 2: Core Functionality
 - [x] Build task creation and listing screens
-- [ ] Implement CRUD operations for tasks
+- [x] Implement CRUD operations for tasks
 - [x] Set up Firestore database integration
 - [ ] Create task detail view
 

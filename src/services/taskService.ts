@@ -8,7 +8,9 @@ import {
   where,
   orderBy,
   onSnapshot,
-  deleteDoc
+  deleteDoc,
+  getDoc,
+  updateDoc
 } from 'firebase/firestore';
 import { NewTask, Task } from '@/types';
 
@@ -41,6 +43,29 @@ export const taskService = {
 
     const taskRef = doc(db, 'tasks', taskId);
     await deleteDoc(taskRef);
+  },
+
+  showTask: async (taskId: string): Promise<Task | null> => {
+    if (!auth.currentUser) throw new Error("Not authenticated");
+
+    const taskRef = doc(db, "tasks", taskId);
+    const snap = await getDoc(taskRef);
+
+    if (!snap.exists()) return null;
+    return { 
+      ...(snap.data() as Task),
+      taskId: snap.id };
+  },
+
+  updateTask: async (taskId: string, updates: Partial<Task>) => {
+    if (!auth.currentUser) throw new Error("Not authenticated");
+  
+    const taskRef = doc(db, "tasks", taskId);
+  
+    await updateDoc(taskRef, {
+      ...updates,
+      updatedAt: serverTimestamp(),
+    });
   },
 
   subscribeToUserTasks: (userId: string, callback: (tasks: Task[]) => void) => {
