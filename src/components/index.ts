@@ -1,5 +1,3 @@
-export { PrimaryButton } from "./common/primaryButton";
-export { FormInput } from "./common/formInput";
-export * from "./tasks";
-export { LoadingSpinner } from "./common/loadingSpinner";
-export { ScreenWrapper } from "./common/screenWrapper";
+// Use barrels at the folder level only
+// Don’t collapse all folders into one giant index
+// The goal is grouped imports where tre-shaking still works fine

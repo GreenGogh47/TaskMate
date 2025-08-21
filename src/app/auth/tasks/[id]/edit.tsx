@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
-import { TaskForm } from "@/components";
+import { TaskForm } from "@/components/tasks";
 import { ScreenWrapper } from "@/components/common";
 import { useAuth } from "@/hooks/useAuth";
 import { taskService } from "@/services/taskService";

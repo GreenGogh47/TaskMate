@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { taskService } from '@/services/taskService';
-import { PrimaryButton, TasksList, NewTaskButton } from '@/components';
-import { LoadingSpinner, ScreenWrapper } from '@/components/common';
+import { PrimaryButton, LoadingSpinner, ScreenWrapper } from '@/components/common';
+import { TasksList, NewTaskButton } from '@/components/tasks';
+import { CategorySelector } from '@/components/tasks/fields';
 import { ErrorBoundary } from '@/utils';
 import { useAuth } from '@/hooks/useAuth';
 import { Task } from '@/types';
 import { authService } from '@/services/userService';
 import { useRouter } from 'expo-router';
-import { CategorySelector } from '@/components';
 
 export default function TasksScreen() {
   const user = useAuth();

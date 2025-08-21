@@ -3,7 +3,8 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { View, Text, ActivityIndicator } from "react-native";
 import { taskService } from "@/services/taskService";
 import { Task } from "@/types";
-import { PrimaryButton, TaskItem } from "@/components";
+import { PrimaryButton } from "@/components/common";
+import { TaskItem } from "@/components/tasks";
 
 export default function TaskShow() {
   const { id } = useLocalSearchParams<{ id: string }>();

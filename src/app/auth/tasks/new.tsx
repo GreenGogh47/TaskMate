@@ -1,5 +1,5 @@
 import React from 'react';
-import { TaskForm } from '@/components';
+import { TaskForm } from '@/components/tasks';
 import { ScreenWrapper } from '@/components/common';
 import { useAuth } from '@/hooks/useAuth';
 
